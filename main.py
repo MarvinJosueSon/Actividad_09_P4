@@ -84,3 +84,5 @@ while True:
         case "3":
             print(f"Total destinos: {recursivaDestinosTotal(clientesDiccionario)}")
             destinosTotal()
+        case "4":
+            print("Aun no puedo")
