@@ -52,6 +52,7 @@ def destinosTotal():
     for clave, valor in clientesDiccionario.items():
         for claveDestino, valorDestino in valor["destinos"].items():
             contadorDestinos = contadorDestinos + 1
+    print(f"CANTIDAD TOTAL: {contadorDestinos} con funcion normal")
 
 def recursivaDestinosTotal(clientesDic):
     claves = list(clientesDic.keys())
@@ -82,3 +83,4 @@ while True:
             verClientes()
         case "3":
             print(f"Total destinos: {recursivaDestinosTotal(clientesDiccionario)}")
+            destinosTotal()
