@@ -4,7 +4,7 @@ def ingresarClientes():
 
         idClienteAux=input("Ingrese el id del cliente: ")
         if not idClienteAux in clientesDiccionario:
-            nombreCLienteAux = input("Ingrese el nombre del cliente: ")
+            nombreClienteAux = input("Ingrese el nombre del cliente: ")
             destinosDiccionarioAux={}
             i=1
             print("---Destinos---")
@@ -18,7 +18,7 @@ def ingresarClientes():
                     }
                     i=i+1
                 clientesDiccionario[idClienteAux]={
-                    "nombre":nombreDestinoAux,
+                    "nombre":nombreClienteAux,
                     "destinos":destinosDiccionarioAux,
                 }
             else:
@@ -41,10 +41,28 @@ def verClientes():
                 print(f"Id del destino: {claveDestino}")
                 print(f"Lugar del destino: {valorDestino["nombre"]}")
             print("------"*10)
+            j=j+1
 
 
     else:
         print("No hay clientes ingresados")
+
+def destinosTotal():
+    contadorDestinos=0
+    for clave, valor in clientesDiccionario.items():
+        for claveDestino, valorDestino in valor["destinos"].items():
+            contadorDestinos = contadorDestinos + 1
+
+def recursivaDestinosTotal(clientesDic):
+    cantidadClientes=len(clientesDic)
+    i=1
+    if i==cantidadClientes:
+        return 1
+    else:
+        for clave, valor in clientesDic.items():
+            for claveDestino, valorDestino in valor["destinos"].items():
+                return 1 + recursivaDestinosTotal(clientesDic)
+
 while True:
     print("==MENU PRINCIPAL==")
     print("1. Ingresar clientes")
@@ -52,10 +70,12 @@ while True:
     print("3. Ver numero total de destinos")
     print("4. Cliente con mas destinos")
     print("5. Salir")
-    opcion=input("Ingrese el numero de opcion")
+    opcion=input("Ingrese el numero de opcion: ")
 
     match opcion:
         case "1":
             ingresarClientes()
         case "2":
             verClientes()
+        case "3":
+            print("")
