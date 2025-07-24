@@ -54,14 +54,17 @@ def destinosTotal():
             contadorDestinos = contadorDestinos + 1
 
 def recursivaDestinosTotal(clientesDic):
-    cantidadClientes=len(clientesDic)
-    i=1
-    if i==cantidadClientes:
-        return 1
-    else:
-        for clave, valor in clientesDic.items():
-            for claveDestino, valorDestino in valor["destinos"].items():
-                return 1 + recursivaDestinosTotal(clientesDic)
+    claves = list(clientesDic.keys())
+
+    def contar(i):
+        if i == len(claves):
+            return 0
+        else:
+            cliente = clientesDic[claves[i]]
+            return len(cliente["destinos"]) + contar(i + 1)
+
+    return contar(0)
+
 
 while True:
     print("==MENU PRINCIPAL==")
@@ -78,4 +81,4 @@ while True:
         case "2":
             verClientes()
         case "3":
-            print("")
+            print(f"Total destinos: {recursivaDestinosTotal(clientesDiccionario)}")
